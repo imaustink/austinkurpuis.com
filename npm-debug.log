@@ -1,0 +1,182 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'link', 'ess' ]
+2 info using npm@2.14.20
+3 info using node@v4.4.1
+4 verbose install where, what [ '/usr/local/lib', [ 'ess' ] ]
+5 verbose install initial load of /usr/local/lib/package.json
+6 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/bower/package.json
+7 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/grunt-cli/package.json
+8 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/gulp/package.json
+9 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/istanbul/package.json
+10 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/jshint/package.json
+11 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/mariah/package.json
+12 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/mocha/package.json
+13 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/node-gyp/package.json
+14 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/npm/package.json
+15 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/particle-cli/package.json
+16 verbose installManyTop reading scoped package data from /usr/local/lib/node_modules/@orchardcorset/authorize-net/package.json
+17 info package.json grunt-cli@0.1.13 No license field.
+18 info package.json @orchardcorset/authorize-net@2.0.3 No repository field.
+19 info package.json @orchardcorset/authorize-net@2.0.3 No README data
+20 info package.json npm@2.14.20 Non-dependency in bundleDependencies: ansi-regex
+21 info package.json npm@2.14.20 Non-dependency in bundleDependencies: imurmurhash
+22 info package.json npm@2.14.20 Non-dependency in bundleDependencies: strip-ansi
+23 verbose readDependencies loading dependencies from /usr/local/lib/package.json
+24 silly cache add args [ 'ess', null ]
+25 verbose cache add spec ess
+26 silly cache add parsed spec Result {
+26 silly cache add   raw: 'ess',
+26 silly cache add   scope: null,
+26 silly cache add   name: 'ess',
+26 silly cache add   rawSpec: '',
+26 silly cache add   spec: 'latest',
+26 silly cache add   type: 'tag' }
+27 silly addNamed ess@latest
+28 verbose addNamed "latest" is being treated as a dist-tag for ess
+29 info addNameTag [ 'ess', 'latest' ]
+30 silly mapToRegistry name ess
+31 silly mapToRegistry using default registry
+32 silly mapToRegistry registry https://registry.npmjs.org/
+33 silly mapToRegistry uri https://registry.npmjs.org/ess
+34 verbose addNameTag registry:https://registry.npmjs.org/ess not in flight; fetching
+35 verbose request uri https://registry.npmjs.org/ess
+36 verbose request no auth needed
+37 info attempt registry request try #1 at 11:19:14 AM
+38 verbose request using bearer token for auth
+39 verbose request id aba43b62ad986660
+40 http request GET https://registry.npmjs.org/ess
+41 http 200 https://registry.npmjs.org/ess
+42 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+42 verbose headers   etag: '"A8GYS4SPP2HLG92T4VVD95ZQS"',
+42 verbose headers   'content-type': 'application/json',
+42 verbose headers   'content-encoding': 'gzip',
+42 verbose headers   'cache-control': 'max-age=300',
+42 verbose headers   'transfer-encoding': 'chunked',
+42 verbose headers   'accept-ranges': 'bytes',
+42 verbose headers   date: 'Sun, 14 Aug 2016 18:19:14 GMT',
+42 verbose headers   via: '1.1 varnish',
+42 verbose headers   connection: 'keep-alive',
+42 verbose headers   'x-served-by': 'cache-sea1923-SEA',
+42 verbose headers   'x-cache': 'MISS',
+42 verbose headers   'x-cache-hits': '0',
+42 verbose headers   'x-timer': 'S1471198754.473319,VS0,VE84',
+42 verbose headers   vary: 'Accept-Encoding' }
+43 silly get cb [ 200,
+43 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+43 silly get     etag: '"A8GYS4SPP2HLG92T4VVD95ZQS"',
+43 silly get     'content-type': 'application/json',
+43 silly get     'content-encoding': 'gzip',
+43 silly get     'cache-control': 'max-age=300',
+43 silly get     'transfer-encoding': 'chunked',
+43 silly get     'accept-ranges': 'bytes',
+43 silly get     date: 'Sun, 14 Aug 2016 18:19:14 GMT',
+43 silly get     via: '1.1 varnish',
+43 silly get     connection: 'keep-alive',
+43 silly get     'x-served-by': 'cache-sea1923-SEA',
+43 silly get     'x-cache': 'MISS',
+43 silly get     'x-cache-hits': '0',
+43 silly get     'x-timer': 'S1471198754.473319,VS0,VE84',
+43 silly get     vary: 'Accept-Encoding' } ]
+44 verbose get saving ess to /Users/austin/.npm/registry.npmjs.org/ess/.cache.json
+45 verbose correctMkdir /Users/austin/.npm correctMkdir not in flight; initializing
+46 silly addNameTag next cb for ess with tag latest
+47 silly addNamed ess@1.0.2
+48 verbose addNamed "1.0.2" is a plain semver version for ess
+49 silly mapToRegistry name ess
+50 silly mapToRegistry using default registry
+51 silly mapToRegistry registry https://registry.npmjs.org/
+52 silly mapToRegistry uri https://registry.npmjs.org/ess
+53 verbose addRemoteTarball https://registry.npmjs.org/ess/-/ess-1.0.2.tgz not in flight; adding
+54 verbose addRemoteTarball [ 'https://registry.npmjs.org/ess/-/ess-1.0.2.tgz',
+54 verbose addRemoteTarball   'cafba87ecc2707bbd600888a8c15e8736d717256' ]
+55 info retry fetch attempt 1 at 11:19:14 AM
+56 info attempt registry request try #1 at 11:19:14 AM
+57 http fetch GET https://registry.npmjs.org/ess/-/ess-1.0.2.tgz
+58 verbose request using bearer token for auth
+59 http fetch 200 https://registry.npmjs.org/ess/-/ess-1.0.2.tgz
+60 silly fetchAndShaCheck shasum cafba87ecc2707bbd600888a8c15e8736d717256
+61 verbose addTmpTarball /var/folders/ry/sf04khzj1zgf5nnyhz94fl380000gn/T/npm-6282-a9c1fe32/registry.npmjs.org/ess/-/ess-1.0.2.tgz not in flight; adding
+62 verbose addTmpTarball already have metadata; skipping unpack for ess@1.0.2
+63 verbose correctMkdir /Users/austin/.npm correctMkdir not in flight; initializing
+64 silly cache afterAdd ess@1.0.2
+65 verbose afterAdd /Users/austin/.npm/ess/1.0.2/package/package.json not in flight; writing
+66 verbose correctMkdir /Users/austin/.npm correctMkdir not in flight; initializing
+67 verbose afterAdd /Users/austin/.npm/ess/1.0.2/package/package.json written
+68 silly install resolved [ { name: 'ess',
+68 silly install resolved     version: '1.0.2',
+68 silly install resolved     description: 'Server side events library.',
+68 silly install resolved     main: 'index.js',
+68 silly install resolved     scripts: { test: 'echo "Error: no test specified" && exit 1' },
+68 silly install resolved     repository:
+68 silly install resolved      { type: 'git',
+68 silly install resolved        url: 'git+ssh://git@github.com/tmathews/ess.git' },
+68 silly install resolved     keywords: [ 'SSE', 'server', 'side', 'events' ],
+68 silly install resolved     author: { name: 'Thomas Mathews' },
+68 silly install resolved     license: 'ISC',
+68 silly install resolved     bugs: { url: 'https://github.com/tmathews/ess/issues' },
+68 silly install resolved     homepage: 'https://github.com/tmathews/ess',
+68 silly install resolved     gitHead: 'cbe8dbfb8a3dfbf1b0c8f9fda7366b7269dd8828',
+68 silly install resolved     _id: 'ess@1.0.2',
+68 silly install resolved     _shasum: 'cafba87ecc2707bbd600888a8c15e8736d717256',
+68 silly install resolved     _from: 'ess@latest',
+68 silly install resolved     _npmVersion: '2.13.1',
+68 silly install resolved     _nodeVersion: '0.10.26',
+68 silly install resolved     _npmUser: { name: 'tmathews', email: 'thomas.c.mathews@gmail.com' },
+68 silly install resolved     maintainers: [ [Object] ],
+68 silly install resolved     dist:
+68 silly install resolved      { shasum: 'cafba87ecc2707bbd600888a8c15e8736d717256',
+68 silly install resolved        tarball: 'https://registry.npmjs.org/ess/-/ess-1.0.2.tgz' },
+68 silly install resolved     directories: {},
+68 silly install resolved     _resolved: 'https://registry.npmjs.org/ess/-/ess-1.0.2.tgz' } ]
+69 info install ess@1.0.2 into /usr/local/lib
+70 info installOne ess@1.0.2
+71 verbose installOne of ess to /usr/local/lib not in flight; installing
+72 verbose correctMkdir /Users/austin/.npm/_locks correctMkdir not in flight; initializing
+73 verbose lock using /Users/austin/.npm/_locks/ess-ff50ff967ad3a881.lock for /usr/local/lib/node_modules/ess
+74 silly install write writing ess 1.0.2 to /usr/local/lib/node_modules/ess
+75 verbose unbuild s/ess
+76 silly gentlyRm /usr/local/lib/node_modules/ess is being purged from base /usr/local/lib/node_modules/ess
+77 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/ess
+78 verbose tar unpack /Users/austin/.npm/ess/1.0.2/package.tgz
+79 verbose tar unpacking to /usr/local/lib/node_modules/ess
+80 silly gentlyRm /usr/local/lib/node_modules/ess is being purged
+81 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/ess
+82 silly gunzTarPerm modes [ '755', '644' ]
+83 error tar.unpack untar error /Users/austin/.npm/ess/1.0.2/package.tgz
+84 verbose unlock done using /Users/austin/.npm/_locks/ess-ff50ff967ad3a881.lock for /usr/local/lib/node_modules/ess
+85 verbose fstream_path /usr/local/lib/node_modules/ess
+86 verbose fstream_type Directory
+87 verbose fstream_class DirWriter
+88 verbose stack Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/ess'
+88 verbose stack     at Error (native)
+89 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25
+89 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53
+89 verbose fstream_stack FSReqWrap.oncomplete (fs.js:82:15)
+90 verbose cwd /Users/austin/kurpuis.com
+91 error Darwin 14.5.0
+92 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "link" "ess"
+93 error node v4.4.1
+94 error npm  v2.14.20
+95 error path /usr/local/lib/node_modules/ess
+96 error code EACCES
+97 error errno -13
+98 error syscall mkdir
+99 error Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/ess'
+99 error     at Error (native)
+99 error  { [Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/ess']
+99 error   errno: -13,
+99 error   code: 'EACCES',
+99 error   syscall: 'mkdir',
+99 error   path: '/usr/local/lib/node_modules/ess',
+99 error   fstream_type: 'Directory',
+99 error   fstream_path: '/usr/local/lib/node_modules/ess',
+99 error   fstream_class: 'DirWriter',
+99 error   fstream_stack:
+99 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25',
+99 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53',
+99 error      'FSReqWrap.oncomplete (fs.js:82:15)' ] }
+100 error Please try running this command again as root/Administrator.
+101 verbose exit [ -13, true ]
+102 verbose unbuild s/ess
+103 silly gentlyRm /usr/local/lib/node_modules/ess is being purged from base /usr/local/lib/node_modules/ess
+104 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/ess
