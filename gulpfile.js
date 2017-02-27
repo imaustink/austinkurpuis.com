@@ -14,7 +14,9 @@ var awspublish = require('gulp-awspublish');
 // Default task
 gulp.task('default', ['dev']);
 
-gulp.task('build', ['sass', 'js', 'pug']);
+gulp.task('build', ['sass', 'js'], function(){
+    gulp.start('pug');
+});
 
 gulp.task('sass', function() {
     return gulp.src(['vendor/bootstrap/scss/bootstrap.scss', 'scss/*.scss'])
