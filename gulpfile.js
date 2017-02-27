@@ -91,7 +91,7 @@ gulp.task('publish', ['build'], function(){
         'Cache-Control': 'max-age=315360000, no-transform, public' 
     };
 
-    return gulp.src(['public'])
+    return gulp.src(['public/**'])
         // publisher will add Content-Length, Content-Type and headers specified above 
         // If not specified it will set x-amz-acl to public-read by default 
         .pipe(publisher.publish(headers))
