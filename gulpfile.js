@@ -14,7 +14,7 @@ var awspublish = require('gulp-awspublish');
 // Default task
 gulp.task('default', ['dev']);
 
-gulp.task('build', ['sass', 'js'], function(){
+gulp.task('build', ['sass', 'js', 'img'], function(){
     gulp.start('pug');
 });
 
@@ -44,6 +44,11 @@ gulp.task('js', function() {
         .pipe(browserSync.reload({
             stream: true
         }));
+});
+
+gulp.task('img', function(){
+    return gulp.src(['images/**'])
+        .pipe(gulp.dest('public/img'));
 });
 
 // Configure the browserSync task
