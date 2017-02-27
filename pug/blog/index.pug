@@ -1,0 +1,31 @@
+extends /pug/template/base
+block content
+    .columns.col-multiline
+        .column.col-12
+            h3 Spoofing Shopify's Login With Node.js
+            p I recently was tasked with importing a large data set to Shopify. About 300,000 orders and 190,000 order comments. Since Shopify's API does not support creating order comments, I was forced to spoof a login and use the undocumented admin endpionts.
+            P My first plan was to just login to Shopify manually and steal the session ID and CSRF token from the browser, but I quickly realized I needed to login to 17 differant users so I could create comments under the right username.
+            h5 Reverse Engineering Login
+            p= 'After inspecting the login request I found it was an '
+                code x-www-form-urlencoded
+                span= ' POST to '
+                code /admin/auth/login
+                span= ' with the following fields:'
+            pre
+                |utf8:✓
+                |authenticity_token:[authenticity_token]
+                |redirect:
+                |login:[email]
+                |password:[password]
+                |commit:Log in
+            p= 'So now we know what thr request looks like, all we\'re missing is the '
+                code authenticity_token
+                span= ' which can be found in a hidden input in the login form, named '
+                code authenticity_token
+                |.
+            p= 'To make the login request I\'m using an NPM module called '
+                a(href='') request
+                span= ' and to get the session token I\'m using '
+                a(href='') cheerio
+                |.
+            p We don't need to worry about the redirect field as we just need the session ID in the cookie.

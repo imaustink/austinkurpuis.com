@@ -1,102 +1,104 @@
 // Assigning modules to local variables
 var gulp = require('gulp');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 var browserSync = require('browser-sync').create();
-var header = require('gulp-header');
 var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
+var pug = require('gulp-pug');
+var concat = require('gulp-concat');
 var pkg = require('./package.json');
-
-// Set the banner content
-var banner = ['/*!\n',
-    ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-    ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-    ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n',
-    ' */\n',
-    ''
-].join('');
+var AWS = require('aws-sdk');
+var awspublish = require('gulp-awspublish');
 
 // Default task
-gulp.task('default', ['less', 'minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['dev']);
 
-// Less task to compile the less files and add the banner
-gulp.task('less', function() {
-    return gulp.src('less/grayscale.less')
-        .pipe(less())
-        .pipe(header(banner, { pkg: pkg }))
+gulp.task('build', ['sass', 'js', 'pug']);
+
+gulp.task('sass', function() {
+    return gulp.src(['vendor/bootstrap/scss/bootstrap.scss', 'scss/*.scss'])
+        .pipe(sass().on('error', sass.logError))
+        .pipe(concat('main.css'))
         .pipe(gulp.dest('css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-});
-
-// Minify CSS
-gulp.task('minify-css', function() {
-    return gulp.src('css/grayscale.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('css'))
+        .pipe(gulp.dest('public/css'))
         .pipe(browserSync.reload({
             stream: true
-        }))
+        }));
 });
 
 // Minify JS
-gulp.task('minify-js', function() {
-    return gulp.src('js/grayscale.js')
+gulp.task('js', function() {
+    return gulp.src([
+            'vendor/particles.js',
+            'js/ga.js',
+            'js/scripts.js'
+        ])
         .pipe(uglify())
-        .pipe(header(banner, { pkg: pkg }))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('js'))
+        .pipe(concat('main.min.js'))
+        .pipe(gulp.dest('public/js'))
         .pipe(browserSync.reload({
             stream: true
-        }))
+        }));
 });
-
-// Copy Bootstrap core files from node_modules to vendor directory
-gulp.task('bootstrap', function() {
-    return gulp.src(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
-        .pipe(gulp.dest('vendor/bootstrap'))
-})
-
-// Copy jQuery core files from node_modules to vendor directory
-gulp.task('jquery', function() {
-    return gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
-        .pipe(gulp.dest('vendor/jquery'))
-})
-
-// Copy Font Awesome core files from node_modules to vendor directory
-gulp.task('fontawesome', function() {
-    return gulp.src([
-            'node_modules/font-awesome/**',
-            '!node_modules/font-awesome/**/*.map',
-            '!node_modules/font-awesome/.npmignore',
-            '!node_modules/font-awesome/*.txt',
-            '!node_modules/font-awesome/*.md',
-            '!node_modules/font-awesome/*.json'
-        ])
-        .pipe(gulp.dest('vendor/font-awesome'))
-})
-
-// Copy all dependencies from node_modules
-gulp.task('copy', ['bootstrap', 'jquery', 'fontawesome']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
     browserSync.init({
         server: {
-            baseDir: ''
+            baseDir: 'public'
         },
-    })
-})
+    });
+});
 
-// Watch Task that compiles LESS and watches for HTML or JS changes and reloads with browserSync
-gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() {
-    gulp.watch('less/*.less', ['less']);
-    gulp.watch('css/*.css', ['minify-css']);
-    gulp.watch('js/*.js', ['minify-js']);
+gulp.task('pug', function(){
+    return gulp.src('pug/**/*.pug')
+        .pipe(pug({
+            basedir: './'
+        }))
+        .pipe(gulp.dest('public'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
+});
+
+// Watch Task that compiles SCSS and watches for HTML or JS changes and reloads with browserSync
+gulp.task('dev', ['build', 'browserSync', 'sass', 'js'], function() {
+    gulp.watch(['scss/*.scss'], ['sass']);
     // Reloads the browser whenever HTML or JS files change
-    gulp.watch('*.html', browserSync.reload);
-    gulp.watch('js/**/*.js', browserSync.reload);
+    // These call pug not reload because js and css are inlined
+    gulp.watch('public/css/*.css', ['pug']);
+    gulp.watch('public/js/*.js', ['js', 'pug']);
+
+    gulp.watch('public/**/*.html', browserSync.reload);
+    gulp.watch('public/js/**/*.js', browserSync.reload);
+    //gulp.watch('*.html', browserSync);
+    gulp.watch(['pug/**/*.pug', 'pug/template/*.pug'], ['pug']); 
+});
+
+gulp.task('publish', ['build'], function(){
+    var publisher = awspublish.create({
+        region: 'us-east-1',
+        params: {
+            Bucket: 'www.austinkurpuis.com'
+        },
+        credentials: new AWS.SharedIniFileCredentials({profile: 'personal'})
+    });
+
+    var headers = {
+        'Cache-Control': 'max-age=315360000, no-transform, public' 
+    };
+
+    return gulp.src(['public'])
+        // publisher will add Content-Length, Content-Type and headers specified above 
+        // If not specified it will set x-amz-acl to public-read by default 
+        .pipe(publisher.publish(headers))
+     
+        // create a cache file to speed up consecutive uploads 
+        .pipe(publisher.cache())
+     
+        // print upload updates to console 
+        .pipe(awspublish.reporter());
 });
