@@ -55,13 +55,13 @@ gulp.task('browserSync', function() {
 
 gulp.task('pug', function(){
     return gulp.src('pug/**/*.pug')
-        .pipe(pug({
-            basedir: './'
-        }))
-        .pipe(gulp.dest('public'))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+    .pipe(pug({
+        basedir: './'
+    }))
+    .pipe(gulp.dest('public'))
+    .pipe(browserSync.reload({
+        stream: true
+    }));
 });
 
 // Watch Task that compiles SCSS and watches for HTML or JS changes and reloads with browserSync
@@ -70,10 +70,10 @@ gulp.task('dev', ['build', 'browserSync', 'sass', 'js'], function() {
     // Reloads the browser whenever HTML or JS files change
     // These call pug not reload because js and css are inlined
     gulp.watch('public/css/*.css', ['pug']);
-    gulp.watch('public/js/*.js', ['js', 'pug']);
+    gulp.watch('js/*.js', ['js']);
 
     gulp.watch('public/**/*.html', browserSync.reload);
-    gulp.watch('public/js/**/*.js', browserSync.reload);
+    gulp.watch('public/js/**/*.js', ['pug']);
     //gulp.watch('*.html', browserSync);
     gulp.watch(['pug/**/*.pug', 'pug/template/*.pug'], ['pug']); 
 });

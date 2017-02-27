@@ -1,3 +1,18 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+    function getId(id){
+        return document.getElementById(id);
+    }
+
+    var BUTTON = getId('BurgerMenu');
+    var LIST = getId('NavList');
+    var show = false;
+
+    BUTTON.addEventListener('mouseup', function(e){
+        if(show = !show) return LIST.classList.remove('collapse');
+        LIST.classList.add('collapse');
+    });
+});
+
 particlesJS('Particles', {
     "particles": {
         "number": {

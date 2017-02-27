@@ -5990,6 +5990,9 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 h2, h4 {
   color: #4e4e4e; }
 
+#BurgerMenu {
+  cursor: pointer; }
+
 .navbar a.nav-link {
   color: black; }
 
@@ -6006,16 +6009,16 @@ h2, h4 {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -10; }
+  z-index: -1; }
 
 #About ul {
   list-style: none;
   padding-left: 5px;
   color: #4e4e4e; }
 
+.card-img-top {
+  width: 100%; }
+
 #Contact ul {
   list-style: none;
   padding-left: 0; }
-
-.card-img-top {
-  width: 100%; }

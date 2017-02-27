@@ -1,16 +1,23 @@
+// Dark but not black, for white backgrounds
 $dark-text-color: #4e4e4e;
 
 h2, h4 { color: $dark-text-color; }
 
+#BurgerMenu { cursor: pointer; }
+
+// Header links
 .navbar a.nav-link { color: black; }
 .navbar a.nav-link:hover { text-decoration: underline; }
 
+// Helo title particle thingy
 #Hero { padding: 70px 0; color: $dark-text-color; }
+#Particles { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; }
 
-#Particles { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -10; }
-
+// About me section lists
 #About ul { list-style: none; padding-left: 5px; color: $dark-text-color; }
 
-#Contact ul { list-style: none; padding-left: 0; }
-
+// Fix image aspect ratio in cards
 .card-img-top { width: 100%; }
+
+// Contact me list
+#Contact ul { list-style: none; padding-left: 0; }
