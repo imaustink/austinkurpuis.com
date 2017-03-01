@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 particlesJS('Particles', {
     "particles": {
         "number": {
-            "value": 76,
+            // For smaller screens the density needs to be lower
+            "value": (window.outerWidth > 800 ? 80 : 40),
             "density": {
                 "enable": true,
                 "value_area": 1400

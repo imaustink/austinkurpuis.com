@@ -18,7 +18,7 @@ Here are the primary requirements I had for creating this site:
 - jQuery free
 - cost effective
 
-The current version hosted on [AWS Cloud Front](https://aws.amazon.com/cloudfront/) using most the new bells and whistles; such as [HTTP/2](https://aws.amazon.com/about-aws/whats-new/2016/09/amazon-cloudfront-now-supports-http2/) and [IPV6](https://aws.amazon.com/about-aws/whats-new/2016/10/ipv6-support-for-cloudfront-waf-and-s3-transfer-acceleration/).
+The current version hosted on [AWS Cloud Front](https://aws.amazon.com/cloudfront/) using most the new bells and whistles; such as [HTTP/2](https://aws.amazon.com/about-aws/whats-new/2016/09/amazon-cloudfront-now-supports-http2/) and [IPV6](https://aws.amazon.com/about-aws/whats-new/2016/10/ipv6-support-for-cloudfront-waf-and-s3-transfer-acceleration/). The cost is around $0.51/month.
 
 The template itself is written in [Pug](https://pugjs.org/api/getting-started.html) then pre-compiled with a build process. It makes use of [Bootstrap 4.0.0-alpha.6](https://v4-alpha.getbootstrap.com/), although the previous version was built on [Spectre](https://picturepan2.github.io/spectre/). The particles in the hero panel are made by [ParticleJS](https://github.com/VincentGarreau/particles.js/).
 

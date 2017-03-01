@@ -15,11 +15,11 @@ var awspublish = require('gulp-awspublish');
 gulp.task('default', ['dev']);
 
 gulp.task('build', ['sass', 'js', 'img'], function(){
-    gulp.start('pug');
+    return gulp.start('pug');
 });
 
 gulp.task('sass', function() {
-    return gulp.src(['vendor/bootstrap/scss/bootstrap.scss', 'scss/*.scss'])
+    return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'scss/*.scss'])
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('main.css'))
         .pipe(gulp.dest('css'))
@@ -35,7 +35,7 @@ gulp.task('sass', function() {
 gulp.task('js', function() {
     return gulp.src([
             'vendor/particles.js',
-            'js/ga.js',
+            'vendor/ga.js',
             'js/scripts.js'
         ])
         .pipe(uglify())
@@ -61,7 +61,7 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('pug', function(){
-    return gulp.src('pug/**/*.pug')
+    return gulp.src(['pug/**/*.pug', '!pug/template/**'])
     .pipe(pug({
         basedir: './'
     }))
@@ -85,27 +85,29 @@ gulp.task('dev', ['build', 'browserSync', 'sass', 'js'], function() {
     gulp.watch(['pug/**/*.pug', 'pug/template/*.pug'], ['pug']); 
 });
 
-gulp.task('publish', ['build'], function(){
-    var publisher = awspublish.create({
-        region: 'us-east-1',
-        params: {
-            Bucket: 'www.austinkurpuis.com'
-        },
-        credentials: new AWS.SharedIniFileCredentials({profile: 'personal'})
+gulp.task('publish', ['sass', 'js', 'img'], function(){
+    return gulp.start('pug', function(){
+        var publisher = awspublish.create({
+            region: 'us-east-1',
+            params: {
+                Bucket: 'www.austinkurpuis.com'
+            },
+            credentials: new AWS.SharedIniFileCredentials({profile: 'personal'})
+        });
+
+        var headers = {
+            'Cache-Control': 'max-age=315360000, no-transform, public' 
+        };
+
+        return gulp.src(['public/**'])
+            // publisher will add Content-Length, Content-Type and headers specified above 
+            // If not specified it will set x-amz-acl to public-read by default 
+            .pipe(publisher.publish(headers))
+        
+            // create a cache file to speed up consecutive uploads 
+            .pipe(publisher.cache())
+        
+            // print upload updates to console 
+            .pipe(awspublish.reporter());
     });
-
-    var headers = {
-        'Cache-Control': 'max-age=315360000, no-transform, public' 
-    };
-
-    return gulp.src(['public/**'])
-        // publisher will add Content-Length, Content-Type and headers specified above 
-        // If not specified it will set x-amz-acl to public-read by default 
-        .pipe(publisher.publish(headers))
-     
-        // create a cache file to speed up consecutive uploads 
-        .pipe(publisher.cache())
-     
-        // print upload updates to console 
-        .pipe(awspublish.reporter());
 });

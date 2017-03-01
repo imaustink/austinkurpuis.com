@@ -5990,6 +5990,9 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 h2, h4 {
   color: #4e4e4e; }
 
+hr {
+  margin-top: 0; }
+
 #BurgerMenu {
   cursor: pointer; }
 
