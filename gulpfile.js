@@ -7,14 +7,15 @@ var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pug = require('gulp-pug');
 var concat = require('gulp-concat');
+var awspublish = require('gulp-awspublish');
+var inlineImages = require('gulp-inline-images');
 var pkg = require('./package.json');
 var AWS = require('aws-sdk');
-var awspublish = require('gulp-awspublish');
 
 // Default task
 gulp.task('default', ['dev']);
 
-gulp.task('build', ['sass', 'js', 'img'], function(){
+gulp.task('build', ['img', 'sass', 'js'], function(){
     return gulp.start('pug');
 });
 
@@ -64,6 +65,9 @@ gulp.task('pug', function(){
     return gulp.src(['pug/**/*.pug', '!pug/template/**'])
     .pipe(pug({
         basedir: './'
+    }))
+    .pipe(inlineImages({
+        basedir: './public'
     }))
     .pipe(gulp.dest('public'))
     .pipe(browserSync.reload({
