@@ -12,12 +12,7 @@
             "taskName": "publish",
             "args": [],
             "isBuildCommand": true,
-            "isWatching": false,
-            "problemMatcher": [
-                "$lessCompile",
-                "$tsc",
-                "$jshint"
-            ]
+            "isWatching": false
         }
     ]
 }
