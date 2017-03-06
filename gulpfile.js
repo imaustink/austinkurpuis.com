@@ -8,9 +8,11 @@ var uglify = require('gulp-uglify');
 var pug = require('gulp-pug');
 var concat = require('gulp-concat');
 var awspublish = require('gulp-awspublish');
+var cfInvalidate = require('gulp-cloudfront-invalidate-aws-publish');
 var inlineImages = require('gulp-inline-images');
 var pkg = require('./package.json');
 var AWS = require('aws-sdk');
+var AWS_CRED = new AWS.SharedIniFileCredentials({profile: 'personal'});
 
 // Default task
 gulp.task('default', ['dev']);
@@ -96,17 +98,21 @@ gulp.task('publish', ['sass', 'js', 'img'], function(){
             params: {
                 Bucket: 'www.austinkurpuis.com'
             },
-            credentials: new AWS.SharedIniFileCredentials({profile: 'personal'})
+            credentials: AWS_CRED
         });
-
-        var headers = {
-            'Cache-Control': 'max-age=315360000, no-transform, public' 
-        };
 
         return gulp.src(['public/**'])
             // publisher will add Content-Length, Content-Type and headers specified above 
             // If not specified it will set x-amz-acl to public-read by default 
-            .pipe(publisher.publish(headers))
+            .pipe(publisher.publish({
+                'Cache-Control': 'max-age=315360000, no-transform, public' 
+            }))
+
+            .pipe(cfInvalidate({
+                distribution: 'E3SXWD6NVA8W3I',
+                accessKeyId: AWS_CRED.accessKeyId,
+                secretAccessKey: AWS_CRED.secretAccessKey
+            }))
         
             // create a cache file to speed up consecutive uploads 
             .pipe(publisher.cache())

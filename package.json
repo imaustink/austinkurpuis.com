@@ -19,6 +19,7 @@
     "gulp": "^3.9.1",
     "gulp-awspublish": "^3.3.0",
     "gulp-clean-css": "^3.0.3",
+    "gulp-cloudfront-invalidate-aws-publish": "^0.2.1",
     "gulp-concat": "^2.6.1",
     "gulp-inline-images": "^1.2.4",
     "gulp-pug": "^3.2.0",
