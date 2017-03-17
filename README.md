@@ -33,4 +33,9 @@ Run build then launch browsersync server and setup file watchers for development
 ### build
 ```gulp build```
 
-Compile scss files to single file and minify, concat and minify js files, copy images files, compile pug files.
+Compile scss files to single file and minify, concat and minify js files, [inline images files](https://github.com/imaustink/gulp-inline-images), compile pug files.
+
+### publish
+```gulp publish```
+
+Run build, publish to S3, and invalidate CloudFront cache.
