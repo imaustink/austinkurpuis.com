@@ -1,5 +1,7 @@
 # austinkurpuis.com
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/imaustink/austinkurpuis.com.svg)](https://greenkeeper.io/)
+
 This repository holds all of the source code associated with [www.austinkurpuis.com](https://www.austinkurpuis.com/).
 
 In addition to being my personal web site it also serves as testing ground for new and open source technologies.
