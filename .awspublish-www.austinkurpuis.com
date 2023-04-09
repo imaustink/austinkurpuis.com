@@ -1,1 +1,0 @@
-{"index.html":"\"4038aa94d17860d8e0c23396543f150c\"","blog/index.html":"\"145a5900f014a5e73ef5663517af1ee2\"","css/main.min.css":"\"15b301e52711cf257f0539d5b09b5505\"","js/main.min.js":"\"ac587c7a15586223fffdd87c3edfebbc\"","img/austin-j-kurpuis-in-office.jpeg":"\"4f4abac07044100beb8b714b7026d9cd\""}

@@ -9,22 +9,12 @@
     "url": "https://github.com/imaustink/austinkurpuis.com"
   },
   "scripts": {
-    "publish": "aws s3 cp ./public s3://www.austinkurpuis.com --recursive --cache-control='max-age=315360000, no-transform, public' --profile=personal",
-    "dump": "aws s3 rm s3://www.austinkurpuis.com --recursive --profile=personal"
+    "start": "serve public/",
+    "publish-site": "aws s3 cp ./public s3://www.austinkurpuis.com --recursive --cache-control max-age=90",
+    "invalidate-cache": "aws cloudfront create-invalidation --distribution-id E3SXWD6NVA8W3I --paths \"/*\"",
+    "deploy": "npm run publish-site && npm run invalidate-cache"
   },
   "dependencies": {
-    "aws-sdk": "^2.22.0",
-    "bootstrap": "^4.0.0-alpha.6",
-    "browser-sync": "^2.18.8",
-    "gulp": "^3.9.1",
-    "gulp-awspublish": "^3.3.0",
-    "gulp-clean-css": "^3.0.3",
-    "gulp-cloudfront-invalidate-aws-publish": "^0.2.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-inline-images": "^1.2.4",
-    "gulp-pug": "^3.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.0.1"
+    "serve": "^14.2.0"
   }
 }
